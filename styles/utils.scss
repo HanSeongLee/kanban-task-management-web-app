@@ -1,3 +1,37 @@
 @import '~include-media/dist/include-media';
 
 $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
+
+.light {
+  --theme-black-color: #000112;
+  --theme-light-grey-color: #F4F7FD;
+  --theme-dark-grey-color: #2B2C37;
+  --theme-medium-grey-color: #828FA3;
+  --theme-white-color: #FFFFFF;
+  --theme-primary-color: #635FC7;
+  --theme-primary-highlight-color: #A8A4FF;
+  --theme-secondary-color: rgba(99, 95, 199, 0.1);
+  --theme-secondary-highlight-color: rgba(99, 95, 199, 0.25);;
+  --theme-natural-color: var(--theme-medium-grey-color);
+  --theme-danger-color: #EA5555;
+  --theme-danger-highlight-color: #FF9898;
+  --theme-background-color: var(--theme-light-grey-color);
+  --theme-line-color: #E4EBFA;
+}
+
+.dark {
+  --theme-black-color: #000112;
+  --theme-very-dark-grey-color: #20212C;
+  --theme-dark-grey-color: #2B2C37;
+  --theme-medium-grey-color: #828FA3;
+  --theme-white-color: #FFFFFF;
+  --theme-primary-color: #635FC7;
+  --theme-primary-highlight-color: #A8A4FF;
+  --theme-secondary-color: #FFFFFF;
+  --theme-secondary-highlight-color: #FFFFFF;
+  --theme-natural-color: var(--theme-medium-grey-color);
+  --theme-danger-color: #EA5555;
+  --theme-danger-highlight-color: #FF9898;
+  --theme-background-color: var(--theme-very-dark-grey-color);
+  --theme-line-color: #3E3F4E;
+}
