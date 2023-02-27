@@ -15,7 +15,9 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-natural-color: var(--theme-medium-grey-color);
   --theme-danger-color: #EA5555;
   --theme-danger-highlight-color: #FF9898;
+  --theme-title-color: var(--theme-black-color);
   --theme-background-color: var(--theme-light-grey-color);
+  --theme-box-color: var(--theme-white-color);
   --theme-line-color: #E4EBFA;
 }
 
@@ -32,6 +34,8 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-natural-color: var(--theme-medium-grey-color);
   --theme-danger-color: #EA5555;
   --theme-danger-highlight-color: #FF9898;
+  --theme-title-color: var(--theme-white-color);
   --theme-background-color: var(--theme-very-dark-grey-color);
+  --theme-box-color: var(--theme-dark-grey-color);
   --theme-line-color: #3E3F4E;
 }

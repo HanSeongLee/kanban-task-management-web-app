@@ -5,10 +5,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: 500;
   font-size: 13px;
   line-height: 23px;
+  color: var(--theme-natural-color);
   background: var(--theme-background-color);
 }
 
