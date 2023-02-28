@@ -1,0 +1,24 @@
+
+.boardTitleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &.on {
+    .icon {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: var(--theme-title-color);
+  }
+
+  .icon {
+    transition: transform 0.3s;
+  }
+}
