@@ -1,0 +1,104 @@
+
+.sidebar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  display: none;
+
+  &.open {
+    display: flex;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.5;
+  }
+
+  .box {
+    position: relative;
+    width: 264px;
+    background: var(--theme-box-color);
+    box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
+    border-radius: 8px;
+    padding: 16px 0;
+
+    .body {
+      margin-bottom: 16px;
+
+      .title {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 2.4px;
+        text-transform: uppercase;
+        padding-left: 24px;
+        margin-bottom: 19px;
+      }
+
+      .boardList {
+        list-style: none;
+        padding-right: 24px;
+
+        li {
+          min-width: 240px;
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+          font-weight: 700;
+          font-size: 15px;
+          line-height: 19px;
+          color: var(--theme-natural-color);
+          padding-left: 24px;
+          cursor: pointer;
+
+          &::before {
+            width: 16px;
+            height: 16px;
+            -webkit-mask: url("/icons/icon-board.svg") no-repeat 50% 50%;
+            mask: url("/icons/icon-board.svg") no-repeat 50% 50%;
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background: var(--theme-natural-color);
+            content: "";
+            margin-right: 12px;
+          }
+
+          &.active {
+            background: var(--theme-primary-color);
+            border-radius: 0px 100px 100px 0px;
+            color: var(--theme-white-color);
+
+            &::before {
+              background: var(--theme-white-color);
+            }
+          }
+        }
+
+        .createNewBoard {
+          color: var(--theme-primary-color);
+
+          &::before {
+            background: var(--theme-primary-color);
+          }
+        }
+      }
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--theme-background-color);
+      border-radius: 6px;
+      margin: 0 13px 0 16px;
+      padding: 14px 0;
+    }
+  }
+}
