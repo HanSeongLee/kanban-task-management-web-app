@@ -1,7 +1,13 @@
 
 .button {
+  min-width: 174px;
+  min-height: 40px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 23px;
   background: transparent;
   border: 0;
+  border-radius: 20px;
   cursor: pointer;
 
   &:disabled {
@@ -9,14 +15,13 @@
   }
 
   &.primary {
-    min-width: 174px;
-    min-height: 40px;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 23px;
     color: var(--theme-white-color);
     background: var(--theme-primary-color);
-    border-radius: 20px;
+  }
+
+  &.secondary {
+    color: var(--theme-primary-color);
+    background: var(--theme-secondary-color);
   }
 
   &.round {

@@ -14,6 +14,7 @@ const Button: React.FC<IProps> = ({ variant, icon, round, className, children, .
             [styles.mobileIcon]: icon,
             [styles.round]: round,
             [styles.primary]: variant === 'primary',
+            [styles.secondary]: variant === 'secondary',
         }, className)}
                 {...props}
         >

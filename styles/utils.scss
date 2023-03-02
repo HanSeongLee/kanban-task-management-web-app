@@ -3,7 +3,7 @@
 $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
 
 .light {
-  --theme-black-color: #000112;
+  --theme-black-color: 0, 1, 18;
   --theme-light-grey-color: #F4F7FD;
   --theme-dark-grey-color: #2B2C37;
   --theme-medium-grey-color: #828FA3;
@@ -15,7 +15,8 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-natural-color: var(--theme-medium-grey-color);
   --theme-danger-color: #EA5555;
   --theme-danger-highlight-color: #FF9898;
-  --theme-title-color: var(--theme-black-color);
+  --theme-title-color: rgb(var(--theme-black-color));
+  --theme-title-rgb-color: var(--theme-black-color);
   --theme-background-color: var(--theme-light-grey-color);
   --theme-box-color: var(--theme-white-color);
   --theme-line-color: #E4EBFA;
@@ -35,6 +36,7 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-danger-color: #EA5555;
   --theme-danger-highlight-color: #FF9898;
   --theme-title-color: var(--theme-white-color);
+  --theme-title-rgb-color: 255, 255, 255;
   --theme-background-color: var(--theme-very-dark-grey-color);
   --theme-box-color: var(--theme-dark-grey-color);
   --theme-line-color: #3E3F4E;
