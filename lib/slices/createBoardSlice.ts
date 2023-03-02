@@ -1,7 +1,9 @@
 import { StateCreator } from 'zustand';
+import { ModalID } from 'types/modal';
 
 export interface BoardSlice {
     boards: Board[];
+    openAddNewBoardModal: () => void;
 }
 
 export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
@@ -22,4 +24,10 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
             columns: [],
         },
     ],
+    openAddNewBoardModal: () => {
+        set({
+            modalId: ModalID.ADD_NEW_BOARD,
+            showModal: true,
+        });
+    },
 });
