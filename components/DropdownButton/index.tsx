@@ -3,26 +3,25 @@ import styles from './style.module.scss';
 import cn from 'classnames';
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    open: boolean;
+    toggleOpen: () => void;
     icon: string;
 }
 
-const DropdownButton: React.FC<IProps> = ({ icon, className, children, ...props }) => {
-    const [open, setOpen] = useState<boolean>(false);
-
-    const onToggleOpen = () => {
-        setOpen(!open);
-    };
-
+const DropdownButton: React.FC<IProps> = ({
+                                              open, toggleOpen, icon, className, children,
+                                              ...props
+                                          }) => {
     return (
         <div className={cn(styles.dropdownButton, {
             [styles.open]: open,
         }, className)}
         >
             <div className={styles.overlay}
-                 onClick={onToggleOpen}
+                 onClick={toggleOpen}
             />
             <button className={styles.button}
-                    onClick={onToggleOpen}
+                    onClick={toggleOpen}
                     {...props}
             >
                 <img className={styles.icon}
