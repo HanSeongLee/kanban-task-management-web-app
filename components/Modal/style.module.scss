@@ -1,0 +1,38 @@
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.open {
+    display: flex;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.5;
+  }
+
+  .container {
+    flex: 1;
+    padding: 0 16px;
+  }
+
+  .box {
+    position: relative;
+    width: 100%;
+    background: var(--theme-box-color);
+    border-radius: 6px;
+    padding: 24px;
+  }
+}
