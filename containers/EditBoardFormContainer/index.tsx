@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
@@ -12,13 +12,43 @@ const EditBoardFormContainer: React.FC = (props) => {
     const router = useRouter();
     const { query: { id } } = router;
     const { boards, editBoard, closeModal } = useAppStore();
-    const defaultValues = boards.find(({ id: _id }) => _id === Number(id));
+    const currentBoard: Board = useMemo(() => {
+        return boards.find(({ id: _id }) => _id === Number(id));
+    }, [id, boards]);
+    const defaultValues = {
+        name: currentBoard.name,
+        columns: currentBoard.columns.map(({ name: value }) => {
+            return {
+                value,
+            };
+        }),
+    };
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues,
     });
 
     const onSubmit = (data: object) => {
-        editBoard(data as Board);
+        const { name }: { name: string } = data;
+        const columns: Column[] = data.columns.map(({ value }, index) => {
+            const column = currentBoard.columns.find(({ id: _id }) => _id === index);
+
+            if (!column) {
+                return {
+                    id: index,
+                    name: value,
+                    tasks: [],
+                }
+            }
+            return {
+                ...column,
+                name: value,
+            };
+        });
+        editBoard({
+            id: Number(id),
+            name,
+            columns,
+        });
         closeModal();
     };
 
