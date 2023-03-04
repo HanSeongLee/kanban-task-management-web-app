@@ -15,7 +15,9 @@ const Button: React.FC<IProps> = ({ variant, icon, round, className, children, .
             [styles.round]: round,
             [styles.primary]: variant === 'primary',
             [styles.secondary]: variant === 'secondary',
+            [styles.danger]: variant === 'danger',
         }, className)}
+                type={'button'}
                 {...props}
         >
             <div className={styles.content}>

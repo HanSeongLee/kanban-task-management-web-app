@@ -24,6 +24,11 @@
     background: var(--theme-secondary-color);
   }
 
+  &.danger {
+    color: var(--theme-white-color);
+    background: var(--theme-danger-color);
+  }
+
   &.round {
     min-height: 48px;
     font-size: 15px;
