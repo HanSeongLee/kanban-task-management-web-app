@@ -36,8 +36,8 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
             boards: [
                 ...boards,
                 {
-                    id: newId,
                     ...board,
+                    id: newId,
                 },
             ],
         });

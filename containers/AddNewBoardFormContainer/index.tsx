@@ -28,7 +28,19 @@ const AddNewBoardFormContainer: React.FC = (props) => {
     const { pathname } = router;
 
     const onSubmit = (data: object) => {
-        const newId = addBoard(data as Board);
+        const { name }: { name: string } = data;
+        const columns: Column[] = data.columns.map(({ value }, index) => {
+            return {
+                id: index,
+                name: value,
+                tasks: [],
+            };
+        });
+        const newId = addBoard({
+            id: -1,
+            name,
+            columns,
+        });
         closeModal();
         router.push({
             pathname,
