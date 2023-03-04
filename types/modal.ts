@@ -1,5 +1,5 @@
 export enum ModalID {
-    UNKOWN,
+    UNKNOWN,
     ADD_NEW_BOARD,
-    ADD_DELETE_BOARD,
+    DELETE_BOARD,
 }

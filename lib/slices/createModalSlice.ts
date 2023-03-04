@@ -8,11 +8,11 @@ export interface ModalSlice {
 }
 
 export const createModalSlice: StateCreator<ModalSlice> = (set, get) => ({
-    modalId: ModalID.UNKOWN,
+    modalId: ModalID.UNKNOWN,
     showModal: false,
     closeModal: () => {
         set({
-            modalId: ModalID.UNKOWN,
+            modalId: ModalID.UNKNOWN,
             showModal: false,
         });
     },

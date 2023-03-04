@@ -57,7 +57,7 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
     },
     openDeleteBoardModal: () => {
         set({
-            modalId: ModalID.ADD_DELETE_BOARD,
+            modalId: ModalID.DELETE_BOARD,
             showModal: true,
         });
     }
