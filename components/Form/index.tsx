@@ -3,12 +3,8 @@ import styles from './style.module.scss';
 import cn from 'classnames';
 import Button from 'components/Button';
 
-interface IProps extends FormHTMLAttributes<HTMLFormElement> {
-    variant?: 'primary' | 'danger' | 'none';
-    title: string;
-    description?: string;
-    buttonName: string;
-    onCancel?: () => void;
+interface IProps extends FormHTMLAttributes<HTMLFormElement>, IForm {
+
 }
 
 const Form: React.FC<IProps> = ({

@@ -1,10 +1,14 @@
-import React from 'react';
-import AddNewBoardForm from 'components/AddNewBoardForm';
+import React, { HTMLAttributes } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
+import BoardForm from 'components/BoardForm';
 
-const AddNewBoardFormContainer: React.FC = () => {
+interface IProps extends HTMLAttributes<HTMLDivElement> {
+
+}
+
+const AddNewBoardFormContainer: React.FC = (props) => {
     const defaultValues = {
         name: '',
         columns: [
@@ -35,9 +39,12 @@ const AddNewBoardFormContainer: React.FC = () => {
     };
 
     return (
-        <AddNewBoardForm control={control}
-                         errors={errors}
-                         onSubmit={handleSubmit(onSubmit)}
+        <BoardForm title={'Add New Board'}
+                   buttonName={'Create New Board'}
+                   control={control}
+                   errors={errors}
+                   onSubmit={handleSubmit(onSubmit)}
+                   {...props}
         />
     );
 };

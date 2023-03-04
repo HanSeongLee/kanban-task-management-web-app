@@ -7,24 +7,27 @@ import { Controller, useFieldArray } from 'react-hook-form';
 import { Control } from 'react-hook-form/dist/types/form';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import Button from 'components/Button';
+import cn from 'classnames';
 
-interface IProps extends HTMLAttributes<HTMLDivElement> {
+interface IProps extends HTMLAttributes<HTMLDivElement>, IForm {
     control: Control<any>;
     errors: FieldErrors<any>;
     onSubmit?: FormEventHandler<any> | undefined;
 }
 
-const AddNewBoardForm: React.FC<IProps> = ({ control, errors, onSubmit, ...props }) => {
+const BoardForm: React.FC<IProps> = ({
+                                         control, errors, onSubmit, className,
+                                         ...props
+                                     }) => {
     const { fields, append, remove } = useFieldArray({
         control,
         name: 'columns',
     });
 
     return (
-        <Form className={styles.addNewBoardForm}
-              title={'Add New Board'}
-              buttonName={'Create New Board'}
+        <Form className={cn(styles.boardForm, className)}
               onSubmit={onSubmit}
+              {...props}
         >
             <div>
                 <Label htmlFor={'name'}>
@@ -87,4 +90,4 @@ const AddNewBoardForm: React.FC<IProps> = ({ control, errors, onSubmit, ...props
     );
 };
 
-export default AddNewBoardForm;
+export default BoardForm;
