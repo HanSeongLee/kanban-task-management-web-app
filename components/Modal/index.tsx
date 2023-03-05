@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, useEffect } from 'react';
 import styles from './style.module.scss';
 import cn from 'classnames';
 
@@ -11,6 +11,15 @@ const Modal: React.FC<IProps> = ({
                                      open, closeModal, className, children,
                                      ...props
                                  }) => {
+    useEffect(() => {
+        const bodyElement = window.document.querySelector('body');
+        if (!bodyElement) {
+            return ;
+        }
+
+        bodyElement.style.overflow = open ? 'hidden' : 'auto';
+    }, [open]);
+
     return (
         <div className={cn(styles.modal, {
             [styles.open]: open,
