@@ -9,6 +9,9 @@ export interface BoardSlice {
     openAddNewBoardModal: () => void;
     openDeleteBoardModal: () => void;
     openEditBoardModal: () => void;
+
+    addTask: (boardId: number, task: Task) => number;
+    openAddNewTaskModal: () => void;
 }
 
 export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
@@ -416,5 +419,46 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => ({
             modalId: ModalID.EDIT_BOARD,
             showModal: true,
         });
-    }
+    },
+    openAddNewTaskModal: () => {
+        set({
+            modalId: ModalID.ADD_NEW_TASK,
+            showModal: true,
+        });
+    },
+    addTask: (boardId: number, task: Task) => {
+        const { boards } = get();
+        let newId = 0;
+        const newBoards = boards.map((board) => {
+            if (board.id === boardId) {
+                const newColumns = board.columns.map((column) => {
+                    if (column.id === Number(task.status)) {
+                        newId = column.tasks.length + 1;
+                        return {
+                            ...column,
+                            tasks: [
+                                ...column.tasks,
+                                {
+                                    ...task,
+                                    id: newId,
+                                    status: column.name,
+                                },
+                            ],
+                        };
+                    }
+                    return column;
+                });
+                return {
+                    ...board,
+                    columns: newColumns,
+                };
+            }
+
+            return board;
+        });
+        set({
+            boards: newBoards,
+        });
+        return newId;
+    },
 });
