@@ -1,0 +1,39 @@
+
+.cardColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+
+  .title {
+    position: sticky;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    padding: 24px 0;
+    backdrop-filter: blur(4px);
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: -16px;
+      right: -16px;
+      bottom: 0;
+      background: var(--theme-background-color);
+      content: "";
+      z-index: -1;
+      opacity: 0.8;
+    }
+  }
+
+  .cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+  }
+}
