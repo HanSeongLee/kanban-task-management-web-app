@@ -1,0 +1,13 @@
+
+.columnBoard {
+  height: 100%;
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0px 16px;
+  overflow: scroll;
+
+  & > * {
+    min-width: 280px;
+  }
+}
