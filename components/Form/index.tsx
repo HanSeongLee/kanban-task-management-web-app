@@ -2,6 +2,7 @@ import React, { FormHTMLAttributes } from 'react';
 import styles from './style.module.scss';
 import cn from 'classnames';
 import Button from 'components/Button';
+import { IForm } from 'types/form';
 
 interface IProps extends FormHTMLAttributes<HTMLFormElement>, IForm {
 
@@ -9,7 +10,8 @@ interface IProps extends FormHTMLAttributes<HTMLFormElement>, IForm {
 
 const Form: React.FC<IProps> = ({
                                     variant, title, description, buttonName,
-                                    onCancel, className, children, ...props
+                                    onCancel, menu, className, children,
+                                    ...props
                                 }) => {
     return (
         <form className={cn(styles.form, {
@@ -17,9 +19,12 @@ const Form: React.FC<IProps> = ({
         }, className)}
               {...props}
         >
-            <h3 className={styles.title}>
-                {title}
-            </h3>
+            <div className={styles.header}>
+                <h3 className={styles.title}>
+                    {title}
+                </h3>
+                {menu}
+            </div>
             {description && (
                 <p className={styles.description}>
                     {description}
