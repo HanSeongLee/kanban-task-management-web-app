@@ -6,11 +6,12 @@ interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     open: boolean;
     toggleOpen: () => void;
     icon: string;
+    height?: string;
 }
 
 const DropdownButton: React.FC<IProps> = ({
                                               open, toggleOpen, icon, className, children,
-                                              ...props
+                                              height, ...props
                                           }) => {
     return (
         <div className={cn(styles.dropdownButton, {
@@ -22,11 +23,15 @@ const DropdownButton: React.FC<IProps> = ({
             />
             <button className={styles.button}
                     onClick={toggleOpen}
+                    type={'button'}
                     {...props}
             >
                 <img className={styles.icon}
                      src={icon}
                      alt={''}
+                     style={{
+                         height,
+                     }}
                 />
             </button>
 
