@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  max-height: 100vh;
+  overflow: scroll;
 
   &.open {
     display: flex;
@@ -26,9 +28,8 @@
 
   .container {
     flex: 1;
-    max-height: 100vh;
     padding: 0 16px;
-    overflow: scroll;
+    margin: auto;
   }
 
   .box {
