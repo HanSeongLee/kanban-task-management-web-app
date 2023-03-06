@@ -21,7 +21,7 @@ const Select: React.FC<IProps> = ({ options, className, value, onChange, ...prop
         >
             <input className={styles.input}
                    {...props}
-                   value={options.find(({ value: _value }) => _value === value).label}
+                   value={options.find(({ value: _value }) => _value === value)?.label}
                    disabled
             />
 
