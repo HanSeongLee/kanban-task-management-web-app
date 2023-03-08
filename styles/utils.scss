@@ -19,6 +19,7 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-title-rgb-color: var(--theme-black-color);
   --theme-background-color: var(--theme-light-grey-color);
   --theme-box-color: var(--theme-white-color);
+  --theme-float-box-color: var(--theme-white-color);
   --theme-line-color: #E4EBFA;
 }
 
@@ -39,5 +40,6 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-title-rgb-color: 255, 255, 255;
   --theme-background-color: var(--theme-very-dark-grey-color);
   --theme-box-color: var(--theme-dark-grey-color);
+  --theme-float-box-color: var(--theme-very-dark-grey-color);
   --theme-line-color: #3E3F4E;
 }
