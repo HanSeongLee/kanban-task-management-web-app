@@ -57,6 +57,15 @@ const BoardForm: React.FC<IProps> = ({
                             key={item.id}
                         >
                             <Controller control={control}
+                                        name={`columns.${index}.id`}
+                                        render={({ field: { value } }) => (
+                                            <Input className={cn(styles.input, styles.hidden)}
+                                                   value={value}
+                                                   hidden
+                                            />
+                                        )}
+                            />
+                            <Controller control={control}
                                         name={`columns.${index}.value`}
                                         rules={{
                                             required: 'Can’t be empty',
