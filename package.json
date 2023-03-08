@@ -13,6 +13,7 @@
     "@sentry/nextjs": "^7.14.0",
     "@svgr/webpack": "^6.2.1",
     "@types/classnames": "^2.3.1",
+    "immer": "^9.0.19",
     "include-media": "^1.4.10",
     "next": "^12.3.1",
     "next-sitemap": "^3.1.23",
