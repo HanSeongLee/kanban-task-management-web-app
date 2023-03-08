@@ -17,13 +17,12 @@ const Select: React.FC<IProps> = ({ options, className, value, onChange, ...prop
         <div className={cn(styles.select, {
             [styles.open]: open,
         }, className)}
-             onClick={onToggleOpen}
         >
-            <input className={styles.input}
-                   {...props}
-                   value={options.find(({ value: _value }) => _value === value)?.label}
-                   disabled
-            />
+            <div className={styles.input}
+                 onClick={onToggleOpen}
+            >
+                {options.find(({ value: _value }) => _value === value)?.label}
+            </div>
 
             <div className={styles.overlay}
                  onClick={onToggleOpen}
@@ -37,6 +36,7 @@ const Select: React.FC<IProps> = ({ options, className, value, onChange, ...prop
                                 if (onChange) {
                                     onChange(value);
                                 }
+                                onToggleOpen();
                             }}
                         >
                             {label}
