@@ -1,8 +1,8 @@
 import React, { HTMLAttributes } from 'react';
 import styles from './style.module.scss';
-import Button from 'components/Button';
+import Button from 'components/commons/Button';
 import cn from 'classnames';
-import Container from 'components/Container';
+import Container from 'components/commons/Container';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
     onAddNewColumn: () => void;

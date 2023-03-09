@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import Modal from 'components/Modal';
+import Modal from 'components/commons/Modal';
 import { useAppStore } from 'lib/store';
 import { ModalID } from 'types/modal';
-import AddNewBoardFormContainer from 'containers/AddNewBoardFormContainer';
-import DeleteBoardFormContainer from 'containers/DeleteBoardFormContainer';
-import EditBoardFormContainer from 'containers/EditBoardFormContainer';
-import AddNewTaskFormContainer from 'containers/AddNewTaskFormContainer';
-import TaskDetailFormContainer from 'containers/TaskDetailFormContainer';
-import DeleteTaskFormContainer from 'containers/DeleteTaskFormContainer';
+import AddNewBoardFormContainer from 'containers/boards/AddNewBoardFormContainer';
+import DeleteBoardFormContainer from 'containers/boards/DeleteBoardFormContainer';
+import EditBoardFormContainer from 'containers/boards/EditBoardFormContainer';
+import AddNewTaskFormContainer from 'containers/tasks/AddNewTaskFormContainer';
+import TaskDetailFormContainer from 'containers/tasks/TaskDetailFormContainer';
+import DeleteTaskFormContainer from 'containers/tasks/DeleteTaskFormContainer';
 import { useRouter } from 'next/router';
-import EditTaskFormContainer from 'containers/EditTaskFormContainer';
+import EditTaskFormContainer from 'containers/tasks/EditTaskFormContainer';
 
 const ModalContainer: React.FC = () => {
     const { modalId, showModal, closeModal, openTaskDetailModal } = useAppStore();

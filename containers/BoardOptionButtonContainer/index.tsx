@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, useMemo, useState } from 'react';
-import DropdownButton from 'components/DropdownButton';
-import Button from 'components/Button';
+import DropdownButton from 'components/commons/DropdownButton';
+import Button from 'components/commons/Button';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
 

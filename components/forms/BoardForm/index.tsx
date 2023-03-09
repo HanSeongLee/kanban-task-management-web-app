@@ -1,5 +1,5 @@
 import React, { FormEventHandler, HTMLAttributes } from 'react';
-import styles from './style.module.scss';
+import styles from 'components/forms/BoardForm/style.module.scss';
 import Form from 'components/commons/Form';
 import Input from 'components/commons/Input';
 import Label from 'components/commons/Label';
@@ -8,88 +8,71 @@ import { Control } from 'react-hook-form/dist/types/form';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import Button from 'components/commons/Button';
 import cn from 'classnames';
-import TextArea from 'components/commons/TextArea';
-import Select from 'components/commons/Select';
 
 interface IProps extends HTMLAttributes<HTMLDivElement>, IForm {
     control: Control<any>;
     errors: FieldErrors<any>;
     onSubmit?: FormEventHandler<any> | undefined;
-    status: Option[];
 }
 
-const TaskForm: React.FC<IProps> = ({
+const BoardForm: React.FC<IProps> = ({
                                          control, errors, onSubmit, className,
-                                         status, ...props
+                                         ...props
                                      }) => {
     const { fields, append, remove } = useFieldArray({
         control,
-        name: 'subtasks',
+        name: 'columns',
     });
 
     return (
-        <Form className={cn(styles.taskForm, className)}
+        <Form className={cn(styles.boardForm, className)}
               onSubmit={onSubmit}
               {...props}
         >
             <div>
-                <Label htmlFor={'title'}>
-                    Title
+                <Label htmlFor={'name'}>
+                    Board Name
                 </Label>
                 <Controller control={control}
-                            name={'title'}
+                            name={'name'}
                             rules={{
                                 required: 'Can’t be empty',
                             }}
                             render={({ field, fieldState: { error } }) => (
-                                <Input id={'title'}
-                                       placeholder={'e.g. Take coffee break'}
+                                <Input id={'name'}
+                                       placeholder={'e.g. Web Design'}
                                        error={error?.message}
                                        {...field}
                                 />
                             )}
                 />
             </div>
-            <div>
-                <Label htmlFor={'description'}>
-                    Description
-                </Label>
-                <Controller control={control}
-                            name={'description'}
-                            rules={{
-                                required: 'Can’t be empty',
-                            }}
-                            render={({ field, fieldState: { error } }) => (
-                                <TextArea id={'description'}
-                                          placeholder={'e.g. It’s always good to take a break. This ' +
-                                              '15 minute break will  recharge the batteries ' +
-                                              'a little.'}
-                                          error={error?.message}
-                                          {...field}
-                                >
-                                    {field.value}
-                                </TextArea>
-                            )}
-                />
-            </div>
-            <div className={styles.subtaskColumnsContainer}>
+            <div className={styles.boardColumnsContainer}>
                 <Label>
-                    Subtasks
+                    Board Columns
                 </Label>
-                <ul className={styles.subtaskList}>
+                <ul className={styles.columnList}>
                     {fields.map((item, index) => (
-                        <li className={styles.subtaskItem}
+                        <li className={styles.columnItem}
                             key={item.id}
                         >
                             <Controller control={control}
-                                        name={`subtasks.${index}.value`}
+                                        name={`columns.${index}.id`}
+                                        render={({ field: { value } }) => (
+                                            <Input className={cn(styles.input, styles.hidden)}
+                                                   value={value}
+                                                   hidden
+                                            />
+                                        )}
+                            />
+                            <Controller control={control}
+                                        name={`columns.${index}.value`}
                                         rules={{
                                             required: 'Can’t be empty',
                                         }}
                                         render={({ field, fieldState: { error } }) => (
                                             <Input className={styles.input}
                                                    error={error?.message}
-                                                   placeholder={index % 2 === 0 ? 'e.g. Make coffee' : 'e.g. Drink coffee & smile'}
                                                    {...field}
                                             />
                                         )}
@@ -109,25 +92,11 @@ const TaskForm: React.FC<IProps> = ({
                         variant={'secondary'}
                         onClick={_ => append({ value: '' })}
                 >
-                    + Add New Subtask
+                    + Add New Column
                 </Button>
-            </div>
-            <div>
-                <Label htmlFor={'status'}>
-                    Status
-                </Label>
-                <Controller control={control}
-                            name={'status'}
-                            render={({ field }) => (
-                                <Select id={'status'}
-                                        options={status}
-                                        {...field}
-                                />
-                            )}
-                />
             </div>
         </Form>
     );
 };
 
-export default TaskForm;
+export default BoardForm;

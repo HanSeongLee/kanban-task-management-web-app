@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from 'components/Sidebar';
+import Sidebar from 'components/commons/Sidebar';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
 
