@@ -66,7 +66,9 @@ const TaskForm: React.FC<IProps> = ({
                                               'a little.'}
                                           error={error?.message}
                                           {...field}
-                                />
+                                >
+                                    {field.value}
+                                </TextArea>
                             )}
                 />
             </div>
