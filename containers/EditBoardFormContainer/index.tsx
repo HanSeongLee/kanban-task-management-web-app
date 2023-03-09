@@ -17,8 +17,9 @@ const EditBoardFormContainer: React.FC = (props) => {
     }, [id, boards]);
     const defaultValues = {
         name: currentBoard.name,
-        columns: currentBoard.columns.map(({ name: value }) => {
+        columns: currentBoard.columns.map(({ id, name: value }) => {
             return {
+                id,
                 value,
             };
         }),
@@ -29,12 +30,11 @@ const EditBoardFormContainer: React.FC = (props) => {
 
     const onSubmit = (data: object) => {
         const { name }: { name: string } = data;
-        const columns: Column[] = data.columns.map(({ value }, index) => {
-            const column = currentBoard.columns.find(({ id: _id }) => _id === index);
+        const columns: Column[] = data.columns.map(({ id, value }) => {
+            const column = currentBoard.columns.find(({ id: _id }) => _id === id);
 
-            if (!column) {
+            if (!id || !column) {
                 return {
-                    id: index,
                     name: value,
                     tasks: [],
                 }
