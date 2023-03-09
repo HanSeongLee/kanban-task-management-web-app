@@ -4,4 +4,7 @@ export enum ModalID {
     DELETE_BOARD,
     EDIT_BOARD,
     ADD_NEW_TASK,
+    TASK_DETAIL,
+    DELETE_TASK,
+    EDIT_TASK,
 }
