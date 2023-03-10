@@ -1,9 +1,15 @@
+@import "styles/utils";
 
 .boardTitleBar {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
+
+  @include media(">tablet") {
+    cursor: default;
+    pointer-events: none;
+  }
 
   &.on {
     .icon {
@@ -16,9 +22,18 @@
     font-size: 18px;
     line-height: 23px;
     color: var(--theme-title-color);
+
+    @include media(">tablet") {
+      font-size: 20px;
+      line-height: 25px;
+    }
   }
 
   .icon {
     transition: transform 0.3s;
+
+    @include media(">tablet") {
+      display: none;
+    }
   }
 }
