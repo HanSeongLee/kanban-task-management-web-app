@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .header {
   position: relative;
@@ -5,15 +6,42 @@
   background: var(--theme-box-color);
   z-index: 1;
 
+  @include media(">tablet") {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 80px;
+    padding: 0;
+  }
+
   .container {
+    flex: 1;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     .leftSide {
+      height: 100%;
       display: flex;
       align-items: center;
       gap: 16px;
+
+      @include media(">tablet") {
+        gap: 24px;
+      }
+
+      .divider {
+        display: none;
+
+        @include media(">tablet") {
+          display: block;
+          width: 1px;
+          height: 100%;
+          background: var(--theme-line-color);
+          border: 0;
+        }
+      }
     }
 
     .buttonContainer {

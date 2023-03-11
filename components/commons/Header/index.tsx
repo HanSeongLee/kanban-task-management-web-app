@@ -18,6 +18,7 @@ const Header: React.FC<IProps> = ({ className, ...props }) => {
             <Container className={styles.container}>
                 <div className={styles.leftSide}>
                     <Logo />
+                    <div className={styles.divider} />
                     <BoardTitleBarContainer />
                 </div>
 
