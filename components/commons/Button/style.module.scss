@@ -11,23 +11,46 @@
   border-radius: 20px;
   cursor: pointer;
 
+  @include media(">desktop") {
+    transition: background 0.3s;
+  }
+
   &:disabled {
     opacity: 0.25;
+    cursor: default;
   }
 
   &.primary {
     color: var(--theme-white-color);
     background: var(--theme-primary-color);
+
+    @include media(">desktop") {
+      &:not(&:disabled):hover {
+        background: var(--theme-primary-highlight-color);
+      }
+    }
   }
 
   &.secondary {
     color: var(--theme-primary-color);
     background: var(--theme-secondary-color);
+
+    @include media(">desktop") {
+      &:not(&:disabled):hover {
+        background: var(--theme-secondary-highlight-color);
+      }
+    }
   }
 
   &.danger {
     color: var(--theme-white-color);
     background: var(--theme-danger-color);
+
+    @include media(">desktop") {
+      &:not(&:disabled):hover {
+        background: var(--theme-danger-highlight-color);
+      }
+    }
   }
 
   &.round {
