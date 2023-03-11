@@ -6,6 +6,16 @@
   background: var(--theme-box-color);
   z-index: 1;
 
+  &.sidebar {
+    .logo {
+      display: none;
+    }
+
+    .divider {
+      display: none !important;
+    }
+  }
+
   @include media(">tablet") {
     display: flex;
     align-items: center;

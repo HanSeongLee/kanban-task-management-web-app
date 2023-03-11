@@ -5,19 +5,24 @@ import cn from 'classnames';
 import Logo from 'components/commons/Logo';
 import BoardOptionButtonContainer from 'containers/BoardOptionButtonContainer';
 import BoardTitleBarContainer from 'containers/BoardTitleBarContainer';
+import { useAppStore } from 'lib/store';
 
 interface IProps extends HTMLAttributes<HTMLHeadElement> {
 
 }
 
 const Header: React.FC<IProps> = ({ className, ...props }) => {
+    const { showSidebar } = useAppStore();
+
     return (
-        <header className={cn(styles.header, className)}
+        <header className={cn(styles.header, {
+            [styles.sidebar]: showSidebar,
+        }, className)}
                 {...props}
         >
             <Container className={styles.container}>
                 <div className={styles.leftSide}>
-                    <Logo />
+                    <Logo className={styles.logo} />
                     <div className={styles.divider} />
                     <BoardTitleBarContainer />
                 </div>
