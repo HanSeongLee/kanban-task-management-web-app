@@ -1,9 +1,14 @@
+@import "styles/utils";
 
 .cardColumn {
   position: relative;
   display: flex;
   flex-direction: column;
   padding-bottom: 24px;
+
+  @include media(">tablet") {
+    max-width: 280px;
+  }
 
   .title {
     position: sticky;
