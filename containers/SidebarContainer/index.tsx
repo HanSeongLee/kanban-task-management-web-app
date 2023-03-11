@@ -6,12 +6,15 @@ import { useRouter } from 'next/router';
 const SidebarContainer: React.FC = () => {
     const { query } = useRouter();
     const { id } = query;
-    const { boards, closeSidebar, showSidebar, openAddNewBoardModal } = useAppStore();
+    const { boards, closeSidebar, toggleSidebar, showSidebar, openAddNewBoardModal } = useAppStore();
     const [activeBoardId, setActiveBoardId] = useState(1);
 
     const onCreateNewBoard = () => {
-        closeSidebar();
         openAddNewBoardModal();
+
+        if (window.innerWidth < 767) {
+            closeSidebar();
+        }
     };
 
     useEffect(() => {
@@ -21,12 +24,14 @@ const SidebarContainer: React.FC = () => {
         }
 
         setActiveBoardId(Number(id));
-        closeSidebar();
+        if (window.innerWidth < 767) {
+            closeSidebar();
+        }
     }, [id]);
 
     return (
         <Sidebar open={showSidebar}
-                 close={closeSidebar}
+                 toggleSidebar={toggleSidebar}
                  onCreateNewBoard={onCreateNewBoard}
                  boards={boards}
                  activeBoardId={activeBoardId}
