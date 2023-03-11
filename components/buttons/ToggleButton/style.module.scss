@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .toggleButton {
   position: relative;
@@ -8,6 +9,14 @@
   border: 0;
   border-radius: 12px;
   cursor: pointer;
+
+  @include media(">desktop") {
+    transition: background 0.3s;
+
+    &:hover {
+      background: var(--theme-primary-highlight-color);
+    }
+  }
 
   &::before {
     position: absolute;
