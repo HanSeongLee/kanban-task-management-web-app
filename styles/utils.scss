@@ -11,7 +11,7 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-primary-color: #635FC7;
   --theme-primary-highlight-color: #A8A4FF;
   --theme-secondary-color: rgba(99, 95, 199, 0.1);
-  --theme-secondary-highlight-color: rgba(99, 95, 199, 0.25);;
+  --theme-secondary-highlight-color: rgba(99, 95, 199, 0.25);
   --theme-natural-color: var(--theme-medium-grey-color);
   --theme-danger-color: #EA5555;
   --theme-danger-highlight-color: #FF9898;
@@ -21,6 +21,7 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-box-color: var(--theme-white-color);
   --theme-float-box-color: var(--theme-white-color);
   --theme-line-color: #E4EBFA;
+  --theme-gradient-color: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
 }
 
 .dark {
@@ -42,4 +43,5 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-box-color: var(--theme-dark-grey-color);
   --theme-float-box-color: var(--theme-very-dark-grey-color);
   --theme-line-color: #3E3F4E;
+  --theme-gradient-color: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
 }

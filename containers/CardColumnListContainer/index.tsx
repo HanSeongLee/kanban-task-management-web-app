@@ -6,6 +6,7 @@ import ColumnBoard from 'components/ColumnBoard';
 import CardColumn from 'components/CardColumn';
 import TaskCard from 'components/TaskCard';
 import Link from 'next/link';
+import NewColumnBox from 'components/NewColumnBox';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -55,6 +56,9 @@ const CardColumnListContainer: React.FC<IProps> = (props) => {
                             </CardColumn>
                         </li>
                     ))}
+                    <li>
+                        <NewColumnBox onClick={onAddNewColumn} />
+                    </li>
                 </ColumnBoard>
             )}
         </div>
