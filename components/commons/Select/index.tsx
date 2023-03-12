@@ -2,8 +2,9 @@ import React, { InputHTMLAttributes, useState } from 'react';
 import styles from 'components/commons/Select/style.module.scss';
 import cn from 'classnames';
 
-interface IProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
     options: Option[];
+    onChange: (value: string) => void;
 }
 
 const Select: React.FC<IProps> = ({ options, className, value, onChange, ...props }) => {

@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from 'react';
+import React, { FormEventHandler, FormHTMLAttributes } from 'react';
 import styles from 'components/forms/TaskDetailForm/style.module.scss';
 import Form from 'components/commons/Form';
 import { IForm } from 'types/form';
@@ -10,7 +10,7 @@ import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import CheckBox from 'components/commons/CheckBox';
 import cn from 'classnames';
 
-interface IProps extends IForm {
+interface IProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'title'>, IForm {
     control: Control<any>;
     errors: FieldErrors<any>;
     onSubmit?: FormEventHandler<any> | undefined;

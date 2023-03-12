@@ -1,4 +1,4 @@
-import React, { FormEventHandler, HTMLAttributes } from 'react';
+import React, { FormEventHandler, FormHTMLAttributes } from 'react';
 import styles from 'components/forms/BoardForm/style.module.scss';
 import Form from 'components/commons/Form';
 import Input from 'components/commons/Input';
@@ -8,8 +8,9 @@ import { Control } from 'react-hook-form/dist/types/form';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import Button from 'components/commons/Button';
 import cn from 'classnames';
+import { IForm } from 'types/form';
 
-interface IProps extends HTMLAttributes<HTMLDivElement>, IForm {
+interface IProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'title'>, IForm {
     control: Control<any>;
     errors: FieldErrors<any>;
     onSubmit?: FormEventHandler<any> | undefined;

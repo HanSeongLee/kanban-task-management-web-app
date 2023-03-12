@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useAppStore } from 'lib/store';
 import DropdownButton from 'components/commons/DropdownButton';
 import { useForm } from 'react-hook-form';
+import { IDetailTaskForm } from 'types/form';
 
 const TaskDetailFormContainer: React.FC = () => {
     const router = useRouter();
@@ -18,12 +19,12 @@ const TaskDetailFormContainer: React.FC = () => {
     const currentColumn = getColumnByTaskId(Number(taskId));
     const currentTask = getTaskById(Number(taskId));
     const [openMenu, setOpenMenu] = useState<boolean>(false);
-    const status: Option[] = currentBoard?.columns.map(({ id, name }) => {
+    const status: Option[] = currentBoard ? currentBoard?.columns.map(({ id, name }) => {
         return {
             label: name,
             value: `${id}`,
         };
-    });
+    }) : [];
 
     if (!currentColumn || !currentTask) {
         return (
@@ -37,7 +38,7 @@ const TaskDetailFormContainer: React.FC = () => {
                 value: isCompleted,
             };
         }),
-        status: status.find(({ label }) => label === currentColumn.name).value,
+        status: status.find(({ label }) => label === currentColumn.name)?.value,
     };
     const { control, formState: { errors }, watch } = useForm({
         defaultValues,
@@ -59,15 +60,20 @@ const TaskDetailFormContainer: React.FC = () => {
 
     useEffect(() => {
         const { unsubscribe } = watch((value) => {
+            const form = value as IDetailTaskForm;
+            if (!form.status || !form.subtasks) {
+                return;
+            }
+
             const newTask: Task = {
                 ...currentTask,
-                status: value.status,
+                status: form.status,
             };
-            if (currentColumn.id !== Number(value.status)) {
+            if (currentColumn.id !== Number(form.status)) {
                 changeTaskStatus(
                     Number(id),
                     currentColumn.id,
-                    Number(value.status),
+                    Number(form.status),
                     newTask.id,
                 );
                 return ;
@@ -76,9 +82,10 @@ const TaskDetailFormContainer: React.FC = () => {
             updateTask(Number(id), {
                 ...newTask,
                 subtasks: currentTask.subtasks.map((subtask, index) => {
+                    const isCompleted: boolean | undefined = form.subtasks[index] ? form.subtasks[index].value : undefined;
                     return {
                         ...subtask,
-                        isCompleted: value.subtasks[index].value,
+                        isCompleted: isCompleted ? isCompleted : false,
                     };
                 }),
             });
@@ -88,7 +95,6 @@ const TaskDetailFormContainer: React.FC = () => {
 
     return (
         <TaskDetailForm control={control}
-                        watch={watch}
                         errors={errors}
                         title={currentTask?.title || ''}
                         description={currentTask?.description}

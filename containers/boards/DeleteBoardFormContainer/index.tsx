@@ -29,7 +29,7 @@ const DeleteBoardFormContainer: React.FC<IProps> = ({ className }) => {
 
     return (
         <DeleteBoardForm className={className}
-                         boardName={boards.find(({ id: _id }) => _id === Number(id))?.name}
+                         boardName={boards.find(({ id: _id }) => _id === Number(id))?.name || ''}
                          onSubmit={onSubmit}
                          onCancel={onCancel}
         />

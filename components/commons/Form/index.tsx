@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Button from 'components/commons/Button';
 import { IForm } from 'types/form';
 
-interface IProps extends FormHTMLAttributes<HTMLFormElement>, IForm {
+interface IProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'title'>, IForm {
 
 }
 

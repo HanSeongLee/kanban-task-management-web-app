@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import TaskForm from 'components/TaskForm';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
+import { IAddTaskForm } from 'types/form';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -15,12 +16,12 @@ const AddNewTaskFormContainer: React.FC<IProps> = (props) => {
     const currentBoard = useMemo(() => {
         return boards.find(({ id: _id }) => _id === Number(id));
     }, [id, boards]);
-    const status: Option[] = currentBoard?.columns.map(({ id, name }) => {
+    const status: Option[] = currentBoard ? currentBoard?.columns.map(({ id, name }) => {
         return {
             label: name,
             value: `${id}`,
         };
-    });
+    }) : [];
     const defaultValues = {
         title: '',
         description: '',
@@ -38,7 +39,7 @@ const AddNewTaskFormContainer: React.FC<IProps> = (props) => {
         defaultValues,
     });
 
-    const onSubmit = (data: object) => {
+    const onSubmit = (data: IAddTaskForm) => {
         const { title, description, subtasks, status } = data;
         const newSubtasks: Subtask[] = subtasks.map(({ value }, index) => {
             return {
@@ -59,14 +60,15 @@ const AddNewTaskFormContainer: React.FC<IProps> = (props) => {
     };
 
     return (
-        <TaskForm title={'Add New Task'}
-                  buttonName={'Create Task'}
-                  control={control}
-                  errors={errors}
-                  onSubmit={handleSubmit(onSubmit)}
-                  status={status}
-                  {...props}
-        />
+        <div {...props}>
+            <TaskForm title={'Add New Task'}
+                      buttonName={'Create Task'}
+                      control={control}
+                      errors={errors}
+                      onSubmit={handleSubmit(onSubmit)}
+                      status={status}
+            />
+        </div>
     );
 };
 

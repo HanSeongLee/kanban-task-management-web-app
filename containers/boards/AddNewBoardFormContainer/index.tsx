@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
 import BoardForm from 'components/forms/BoardForm';
+import { IAddBoardForm } from 'types/form';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -27,7 +28,7 @@ const AddNewBoardFormContainer: React.FC = (props) => {
     const router = useRouter();
     const { pathname } = router;
 
-    const onSubmit = (data: object) => {
+    const onSubmit = (data: IAddBoardForm) => {
         const { name }: { name: string } = data;
         const columns: Column[] = data.columns.map(({ value }, index) => {
             return {
@@ -51,13 +52,14 @@ const AddNewBoardFormContainer: React.FC = (props) => {
     };
 
     return (
-        <BoardForm title={'Add New Board'}
-                   buttonName={'Create New Board'}
-                   control={control}
-                   errors={errors}
-                   onSubmit={handleSubmit(onSubmit)}
-                   {...props}
-        />
+        <div {...props}>
+            <BoardForm title={'Add New Board'}
+                       buttonName={'Create New Board'}
+                       control={control}
+                       errors={errors}
+                       onSubmit={handleSubmit(onSubmit)}
+            />
+        </div>
     );
 };
 

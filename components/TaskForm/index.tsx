@@ -1,4 +1,4 @@
-import React, { FormEventHandler, HTMLAttributes } from 'react';
+import React, { FormEventHandler, FormHTMLAttributes } from 'react';
 import styles from './style.module.scss';
 import Form from 'components/commons/Form';
 import Input from 'components/commons/Input';
@@ -11,8 +11,9 @@ import cn from 'classnames';
 import TextArea from 'components/commons/TextArea';
 import Select from 'components/commons/Select';
 import RemoveIcon from '/public/icons/icon-cross.svg';
+import { IForm } from 'types/form';
 
-interface IProps extends HTMLAttributes<HTMLDivElement>, IForm {
+interface IProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'title'>, IForm {
     control: Control<any>;
     errors: FieldErrors<any>;
     onSubmit?: FormEventHandler<any> | undefined;

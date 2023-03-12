@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
 import TaskForm from 'components/TaskForm';
+import { IEditTaskForm } from 'types/form';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -18,12 +19,12 @@ const EditTaskFormContainer: React.FC = (props) => {
     const currentBoard = useMemo(() => {
         return boards.find(({ id: _id }) => _id === Number(id));
     }, [id, boards]);
-    const status: Option[] = currentBoard?.columns.map(({ id, name }) => {
+    const status: Option[] = currentBoard ? currentBoard?.columns.map(({ id, name }) => {
         return {
             label: name,
             value: `${id}`,
         };
-    });
+    }) : [];
     const currentTask: Task | null = getTaskById(Number(taskId));
     const currentColumn: Column | null = getColumnByTaskId(Number(taskId));
 
@@ -46,11 +47,19 @@ const EditTaskFormContainer: React.FC = (props) => {
         defaultValues,
     });
 
-    const onSubmit = (data: object) => {
+    const onSubmit = (data: IEditTaskForm) => {
         const newTask: Task = {
             ...currentTask,
             subtasks: data.subtasks.map(({ id, value }) => {
-                const subtask = currentTask.subtasks.find(({ id: _id }) => _id == id);
+                const subtask: Subtask | undefined = currentTask.subtasks.find(({ id: _id }) => _id == id);
+                if (!subtask) {
+                    return {
+                        id: -1,
+                        title: value,
+                        isCompleted: false,
+                    };
+                }
+
                 return {
                     ...subtask,
                     title: value,
@@ -63,14 +72,15 @@ const EditTaskFormContainer: React.FC = (props) => {
     };
 
     return (
-        <TaskForm title={'Edit Task'}
-                  buttonName={'Save Changes'}
-                  status={status}
-                  control={control}
-                  errors={errors}
-                  onSubmit={handleSubmit(onSubmit)}
-                  {...props}
-        />
+        <div {...props}>
+            <TaskForm title={'Edit Task'}
+                      buttonName={'Save Changes'}
+                      status={status}
+                      control={control}
+                      errors={errors}
+                      onSubmit={handleSubmit(onSubmit)}
+            />
+        </div>
     );
 };
 
