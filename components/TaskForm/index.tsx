@@ -10,6 +10,7 @@ import Button from 'components/commons/Button';
 import cn from 'classnames';
 import TextArea from 'components/commons/TextArea';
 import Select from 'components/commons/Select';
+import RemoveIcon from '/public/icons/icon-cross.svg';
 
 interface IProps extends HTMLAttributes<HTMLDivElement>, IForm {
     control: Control<any>;
@@ -98,9 +99,7 @@ const TaskForm: React.FC<IProps> = ({
                                     type={'button'}
                                     onClick={() => remove(index)}
                             >
-                                <img src={'/icons/icon-cross.svg'}
-                                     alt={'remove'}
-                                />
+                                <RemoveIcon />
                             </button>
                         </li>
                     ))}

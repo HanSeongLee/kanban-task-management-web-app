@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .taskForm {
 
@@ -29,8 +30,19 @@
         background: transparent;
         border: 0;
         cursor: pointer;
+
+        @include media(">desktop") {
+          svg path {
+            transition: fill 0.3s;
+          }
+
+          &:hover {
+            svg path {
+              fill: var(--theme-danger-color);
+            }
+          }
+        }
       }
     }
   }
-
 }
