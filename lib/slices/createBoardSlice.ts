@@ -1,5 +1,4 @@
 import { StateCreator } from 'zustand';
-import { ModalID } from 'types/modal';
 import produce from 'immer';
 
 export interface BoardSlice {
@@ -7,9 +6,6 @@ export interface BoardSlice {
     addBoard: (board: Board) => number;
     deleteBoard: (boardId: number) => number | null;
     editBoard: (editedBoard: Board) => number;
-    openAddNewBoardModal: () => void;
-    openDeleteBoardModal: () => void;
-    openEditBoardModal: () => void;
 
     getColumnByTaskId: (taskId: number) => Column | null;
     getTaskById: (taskId: number) => Task | null;
@@ -18,10 +14,6 @@ export interface BoardSlice {
     updateTask: (boardId: number, task: Task) => number;
     deleteTask: (boardId: number, taskId: number) => void;
     editTask: (boardId: number, task: Task) => number;
-    openAddNewTaskModal: () => void;
-    openTaskDetailModal: () => void;
-    openDeleteTaskModal: () => void;
-    openEditTaskModal: () => void;
 }
 
 export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
@@ -410,21 +402,21 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
             const prevBoardId = prevBoardIndex >= 0 ? boards[prevBoardIndex].id :
                 boards.length > 0 ? boards[1].id : null;
             set(produce((draft) => {
-                const index = draft.boards.findIndex((board) => board.id === boardId);
+                const index = draft.boards.findIndex((board: Board) => board.id === boardId);
                 draft.boards.splice(index, 1);
             }));
             return prevBoardId;
         },
         editBoard: (editedBoard: Board) => {
             set(produce((draft) => {
-                const board = draft.boards.find((board) => board.id === editedBoard.id);
+                const board = draft.boards.find((board: Board) => board.id === editedBoard.id);
                 board.name = editedBoard.name;
-                board.columns = board.columns.filter((column) =>
+                board.columns = board.columns.filter((column: Column) =>
                     editedBoard.columns.some((newColumn) => newColumn.id === column.id)
                 );
 
                 editedBoard.columns.forEach((newColumn, index) => {
-                    const column = board.columns.find(({ id }) => id === newColumn.id);
+                    const column = board.columns.find(({ id }: { id: number }) => id === newColumn.id);
                     if (column) {
                         column.name = newColumn.name;
                     } else {
@@ -437,30 +429,6 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                 });
             }));
             return editedBoard.id;
-        },
-        openAddNewBoardModal: () => {
-            set({
-                modalId: ModalID.ADD_NEW_BOARD,
-                showModal: true,
-            });
-        },
-        openDeleteBoardModal: () => {
-            set({
-                modalId: ModalID.DELETE_BOARD,
-                showModal: true,
-            });
-        },
-        openEditBoardModal: () => {
-            set({
-                modalId: ModalID.EDIT_BOARD,
-                showModal: true,
-            });
-        },
-        openAddNewTaskModal: () => {
-            set({
-                modalId: ModalID.ADD_NEW_TASK,
-                showModal: true,
-            });
         },
         getColumnByTaskId: (taskId: number) => {
             const { boards } = get();
@@ -493,8 +461,8 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
         addTask: (boardId: number, task: Task) => {
             let newId = generateId();
             set(produce((draft) => {
-                const board = draft.boards.find(({ id: _id }) => _id === boardId);
-                const column = board.columns.find(({ id: _id }) => _id === Number(task.status));
+                const board = draft.boards.find(({ id: _id }: { id: number }) => _id === boardId);
+                const column = board.columns.find(({ id: _id }: { id: number }) => _id === Number(task.status));
                 column.tasks.push({
                     ...task,
                     id: newId,
@@ -505,10 +473,10 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
         },
         changeTaskStatus: (boardId: number, sourceColumnId: number, destinationColumnId: number, taskId: number) => {
             set(produce((draft) => {
-                const board = draft.boards.find(({ id: _id }) => _id === boardId);
-                const sourceColumn = board.columns.find(({ id: _id }) => _id === sourceColumnId);
-                const destinationColumn = board.columns.find(({ id: _id }) => _id === destinationColumnId);
-                const sourceIndex = sourceColumn.tasks.findIndex(({ id: _id }) => _id === taskId);
+                const board = draft.boards.find(({ id: _id }: { id: number }) => _id === boardId);
+                const sourceColumn = board.columns.find(({ id: _id }: { id: number }) => _id === sourceColumnId);
+                const destinationColumn = board.columns.find(({ id: _id }: { id: number }) => _id === destinationColumnId);
+                const sourceIndex = sourceColumn.tasks.findIndex(({ id: _id }: { id: number }) => _id === taskId);
                 const destinationIndex = destinationColumn.tasks.length + 1;
                 if (sourceIndex !== -1) {
                     const sourceTask = sourceColumn.tasks[sourceIndex];
@@ -520,9 +488,9 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
         },
         updateTask: (boardId: number, task: Task) => {
             set(produce((draft) => {
-                const board = draft.boards.find(({ id: _id }) => _id === boardId);
-                const column = board.columns.find(({ id: _id }) => _id === Number(task.status));
-                const oldTask = column.tasks.find(({ id: _id }) => _id === task.id);
+                const board = draft.boards.find(({ id: _id }: { id: number }) => _id === boardId);
+                const column = board.columns.find(({ id: _id }: { id: number }) => _id === Number(task.status));
+                const oldTask = column.tasks.find(({ id: _id }: { id: number }) => _id === task.id);
                 if (oldTask) {
                     oldTask.subtasks = task.subtasks;
                 }
@@ -532,19 +500,23 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
         deleteTask: (boardId: number, taskId: number) => {
             set(produce((draft) => {
                 const taskColumn = draft.getColumnByTaskId(taskId);
-                const board = draft.boards.find(({ id: _id }) => _id === boardId);
-                const column = board.columns.find(({ id: _id }) => _id === taskColumn.id);
-                column.tasks = taskColumn.tasks.filter(({ id }) => id !== taskId);
+                const board = draft.boards.find(({ id: _id }: { id: number }) => _id === boardId);
+                const column = board.columns.find(({ id: _id }: { id: number }) => _id === taskColumn.id);
+                column.tasks = taskColumn.tasks.filter(({ id }: { id: number }) => id !== taskId);
             }));
         },
         editTask: (boardId: number, task: Task) => {
             const { id: taskId } = task;
             const { getColumnByTaskId, changeTaskStatus } = get();
             const taskColumn = getColumnByTaskId(taskId);
+            if (!taskColumn) {
+                return task.id;
+            }
+
             set(produce((draft) => {
-                const board = draft.boards.find(({ id: _id }) => _id === boardId);
-                const column = board.columns.find(({ id: _id }) => _id === taskColumn.id);
-                const oldTask = column.tasks.find(({ id: _id }) => _id === taskId);
+                const board = draft.boards.find(({ id: _id }: { id: number }) => _id === boardId);
+                const column = board.columns.find(({ id: _id }: { id: number }) => _id === taskColumn.id);
+                const oldTask = column.tasks.find(({ id: _id }: { id: number }) => _id === taskId);
                 oldTask.title = task.title;
                 oldTask.description = task.description;
                 oldTask.subtasks = task.subtasks;
@@ -554,24 +526,6 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                 changeTaskStatus(boardId, taskColumn.id, columnId, taskId);
             }
             return task.id;
-        },
-        openTaskDetailModal: () => {
-            set({
-                modalId: ModalID.TASK_DETAIL,
-                showModal: true,
-            });
-        },
-        openDeleteTaskModal: () => {
-            set({
-                modalId: ModalID.DELETE_TASK,
-                showModal: true,
-            });
-        },
-        openEditTaskModal: () => {
-            set({
-                modalId: ModalID.EDIT_TASK,
-                showModal: true,
-            });
         },
     });
 }

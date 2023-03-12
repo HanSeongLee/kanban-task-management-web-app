@@ -5,13 +5,14 @@ import { useAppStore } from 'lib/store';
 import DropdownButton from 'components/commons/DropdownButton';
 import { useForm } from 'react-hook-form';
 import { IDetailTaskForm } from 'types/form';
+import { ModalID } from 'types/modal';
 
 const TaskDetailFormContainer: React.FC = () => {
     const router = useRouter();
     const { query: { id, taskId } } = router;
     const {
         boards, getTaskById, getColumnByTaskId, changeTaskStatus,
-        updateTask, openEditTaskModal, openDeleteTaskModal
+        updateTask, openModal,
     } = useAppStore();
     const currentBoard = useMemo(() => {
         return boards.find(({ id: _id }) => _id === Number(id));
@@ -49,12 +50,12 @@ const TaskDetailFormContainer: React.FC = () => {
     };
 
     const onEditTask = () => {
-        openEditTaskModal();
+        openModal(ModalID.EDIT_TASK);
         toggleOpenMenu();
     };
 
     const onDeleteTask = () => {
-        openDeleteTaskModal();
+        openModal(ModalID.DELETE_TASK);
         toggleOpenMenu();
     };
 

@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from 'components/commons/Sidebar';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
+import { ModalID } from 'types/modal';
 
 const SidebarContainer: React.FC = () => {
     const { query } = useRouter();
     const { id } = query;
-    const { boards, closeSidebar, toggleSidebar, showSidebar, openAddNewBoardModal } = useAppStore();
+    const { boards, closeSidebar, toggleSidebar, showSidebar, openModal } = useAppStore();
     const [activeBoardId, setActiveBoardId] = useState(1);
 
     const onCreateNewBoard = () => {
-        openAddNewBoardModal();
+        openModal(ModalID.ADD_NEW_BOARD);
 
         if (window.innerWidth < 767) {
             closeSidebar();

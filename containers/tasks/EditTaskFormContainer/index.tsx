@@ -4,6 +4,7 @@ import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
 import TaskForm from 'components/TaskForm';
 import { IEditTaskForm } from 'types/form';
+import { ModalID } from 'types/modal';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -14,7 +15,7 @@ const EditTaskFormContainer: React.FC = (props) => {
     const { query: { id, taskId } } = router;
     const {
         boards, getTaskById, getColumnByTaskId, editTask,
-        openTaskDetailModal,
+        openModal,
     } = useAppStore();
     const currentBoard = useMemo(() => {
         return boards.find(({ id: _id }) => _id === Number(id));
@@ -68,7 +69,7 @@ const EditTaskFormContainer: React.FC = (props) => {
             status: data.status,
         };
         editTask(Number(id), newTask);
-        openTaskDetailModal();
+        openModal(ModalID.TASK_DETAIL);
     };
 
     return (

@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import EditTaskFormContainer from 'containers/tasks/EditTaskFormContainer';
 
 const ModalContainer: React.FC = () => {
-    const { modalId, showModal, closeModal, openTaskDetailModal } = useAppStore();
+    const { modalId, showModal, closeModal, openModal } = useAppStore();
     const router = useRouter();
     const { pathname, query: { id, taskId } } = router;
 
@@ -35,7 +35,7 @@ const ModalContainer: React.FC = () => {
             return;
         }
 
-        openTaskDetailModal();
+        openModal(ModalID.TASK_DETAIL);
     }, [id, taskId]);
 
     return (

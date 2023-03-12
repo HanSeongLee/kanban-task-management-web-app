@@ -3,6 +3,7 @@ import DropdownButton from 'components/commons/DropdownButton';
 import Button from 'components/commons/Button';
 import { useAppStore } from 'lib/store';
 import { useRouter } from 'next/router';
+import { ModalID } from 'types/modal';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -10,7 +11,7 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 
 const BoardOptionButtonContainer: React.FC<IProps> = (props) => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
-    const { boards, openDeleteBoardModal, openEditBoardModal, openAddNewTaskModal } = useAppStore();
+    const { boards, openModal } = useAppStore();
     const router = useRouter();
     const { query: { id } } = router;
     const currentBoard = useMemo(() => {
@@ -22,11 +23,11 @@ const BoardOptionButtonContainer: React.FC<IProps> = (props) => {
     };
 
     const onAddNewTask = () => {
-        openAddNewTaskModal();
+        openModal(ModalID.ADD_NEW_TASK);
     };
 
     const onEditBoard = () => {
-        openEditBoardModal();
+        openModal(ModalID.EDIT_BOARD);
         toggleOpenMenu();
     };
 
@@ -35,7 +36,7 @@ const BoardOptionButtonContainer: React.FC<IProps> = (props) => {
             return;
         }
 
-        openDeleteBoardModal();
+        openModal(ModalID.DELETE_BOARD);
         toggleOpenMenu();
     };
 

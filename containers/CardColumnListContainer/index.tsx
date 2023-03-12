@@ -7,6 +7,7 @@ import CardColumn from 'components/CardColumn';
 import TaskCard from 'components/TaskCard';
 import Link from 'next/link';
 import NewColumnBox from 'components/NewColumnBox';
+import { ModalID } from 'types/modal';
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
 
@@ -15,7 +16,7 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 const CardColumnListContainer: React.FC<IProps> = (props) => {
     const router = useRouter();
     const { query: { id } } = router;
-    const { boards, openEditBoardModal } = useAppStore();
+    const { boards, openModal } = useAppStore();
     const currentBoard = useMemo(() => {
         const board = boards.find(({ id: _id }) => _id === Number(id));
         if (!board) {
@@ -28,7 +29,7 @@ const CardColumnListContainer: React.FC<IProps> = (props) => {
     }, [id, boards]);
 
     const onAddNewColumn = () => {
-        openEditBoardModal();
+        openModal(ModalID.EDIT_BOARD);
     };
 
     return (
