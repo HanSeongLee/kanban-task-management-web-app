@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .taskCard {
   display: flex;
@@ -9,10 +10,19 @@
   border-radius: 8px;
   padding: 23px 16px;
 
+  @include media(">desktop") {
+    &:hover {
+      .title {
+        color: var(--theme-primary-color);
+      }
+    }
+  }
+
   .title {
     font-size: 15px;
     line-height: 19px;
     color: var(--theme-title-color);
+    transition: color 0.3s;
   }
 
   .description {
