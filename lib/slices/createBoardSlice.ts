@@ -14,6 +14,8 @@ export interface BoardSlice {
     updateTask: (boardId: number, task: Task) => number;
     deleteTask: (boardId: number, taskId: number) => void;
     editTask: (boardId: number, task: Task) => number;
+    moveTask: (boardId: number, sourceColumnId: number, sourceIndex: number,
+               destinationColumnId: number, destinationIndex: number) => void;
 }
 
 export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
@@ -527,5 +529,17 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
             }
             return task.id;
         },
+        moveTask: (boardId: number, sourceColumnId: number, sourceIndex: number,
+                   destinationColumnId: number, destinationIndex: number) => {
+            set(
+                produce((draft) => {
+                    const board = draft.boards.find((board: Board) => board.id === boardId);
+                    const sourceColumn = board.columns.find((column: Column) => column.id === sourceColumnId);
+                    const destinationColumn = board.columns.find((column: Column) => column.id === destinationColumnId);
+                    const [movedTask] = sourceColumn.tasks.splice(sourceIndex, 1);
+                    destinationColumn.tasks.splice(destinationIndex, 0, movedTask);
+                })
+            );
+        }
     });
 }
