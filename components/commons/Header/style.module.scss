@@ -22,6 +22,12 @@
     width: 100%;
     min-height: 80px;
     padding: 0;
+    border-bottom: 1px solid var(--theme-line-color);
+  }
+
+  @include media(">desktop") {
+    min-height: 97px;
+    padding-right: 8px;
   }
 
   .container {
@@ -58,6 +64,10 @@
       display: flex;
       align-items: center;
       gap: 16px;
+
+      @include media(">tablet") {
+        gap: 24px;
+      }
     }
   }
 }

@@ -15,6 +15,11 @@
         max-width: 261px;
         transition: max-width 0.6s;
       }
+
+      @include media(">desktop") {
+        width: 300px;
+        max-width: 300px;
+      }
     }
   }
 
@@ -35,6 +40,14 @@
       border: 0;
       cursor: pointer;
     }
+
+    @include media(">desktop") {
+      transition: background 0.3s;
+
+      &:hover {
+        background: var(--theme-primary-highlight-color);
+      }
+    }
   }
 }
 
@@ -53,9 +66,11 @@
     max-width: 0;
     display: flex;
     overflow: hidden;
+    border-right: 1px solid var(--theme-line-color) !important;
     transition: max-width 0.6s;
 
     .box {
+      flex: 1;
       display: flex;
       flex-direction: column;
       box-shadow: none !important;
@@ -93,6 +108,19 @@
           border: 0;
           padding-left: 24px;
           cursor: pointer;
+          margin-right: 24px;
+
+          @include media(">desktop") {
+            &:hover {
+              color: var(--theme-primary-color);
+              border-radius: 0px 100px 100px 0px;
+              background: var(--theme-secondary-color);
+
+              svg path {
+                fill: var(--theme-primary-color);
+              }
+            }
+          }
         }
       }
     }
@@ -142,6 +170,7 @@
         padding-right: 24px;
 
         li {
+          position: relative;
           min-width: 240px;
           min-height: 48px;
           display: flex;
@@ -152,6 +181,18 @@
           color: var(--theme-natural-color);
           padding-left: 24px;
           cursor: pointer;
+
+          @include media(">desktop") {
+            &:hover {
+              color: var(--theme-primary-color);
+              border-radius: 0px 100px 100px 0px;
+              background: var(--theme-secondary-color);
+
+              &::before {
+                background: var(--theme-primary-color);
+              }
+            }
+          }
 
           &::before {
             width: 16px;
@@ -172,6 +213,22 @@
 
             &::before {
               background: var(--theme-white-color);
+            }
+          }
+
+          a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 52px;
+
+            @include media(">desktop") {
+              padding-left: 64px;
             }
           }
         }
