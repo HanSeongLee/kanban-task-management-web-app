@@ -22,6 +22,7 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-float-box-color: var(--theme-white-color);
   --theme-line-color: #E4EBFA;
   --theme-gradient-color: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
+  --theme-checkbox-highlight-color: rgba(99, 95, 199, 0.25);
 }
 
 .dark {
@@ -44,4 +45,5 @@ $breakpoints: (mobile: 568px, tablet: 767px, desktop: 992px);
   --theme-float-box-color: var(--theme-very-dark-grey-color);
   --theme-line-color: #3E3F4E;
   --theme-gradient-color: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+  --theme-checkbox-highlight-color: rgba(99, 95, 199, 0.25);
 }

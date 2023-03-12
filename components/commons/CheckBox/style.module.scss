@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .checkBox {
   display: flex;
@@ -11,6 +12,14 @@
   border-radius: 4px;
   padding: 13px 8px 16px 12px;
   cursor: pointer;
+
+  @include media(">desktop") {
+    transition: background 0.3s;
+
+    &:hover {
+      background: var(--theme-checkbox-highlight-color);
+    }
+  }
 
   &.checked {
     color: var(--theme-natural-color);
