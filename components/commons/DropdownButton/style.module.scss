@@ -1,3 +1,4 @@
+@import "styles/utils";
 
 .dropdownButton {
   position: relative;
@@ -29,9 +30,15 @@
     background: transparent;
     border: 0;
     cursor: pointer;
+    padding: 10px;
+    margin: -10px;
 
     .icon {
       height: 16px;
+
+      @include media(">tablet") {
+        height: 20px;
+      }
     }
   }
 
