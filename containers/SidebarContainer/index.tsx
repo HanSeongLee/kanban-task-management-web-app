@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import { ModalID } from 'types/modal';
 
 const SidebarContainer: React.FC = () => {
-    const { query } = useRouter();
-    const { id } = query;
+    const router = useRouter();
+    const { id } = router.query;
     const { boards, closeSidebar, toggleSidebar, showSidebar, openModal } = useAppStore();
     const [activeBoardId, setActiveBoardId] = useState(1);
 
@@ -19,6 +19,10 @@ const SidebarContainer: React.FC = () => {
     };
 
     useEffect(() => {
+        if (!router.isReady) {
+            return;
+        }
+
         if (!id) {
             setActiveBoardId(1);
             return ;
@@ -28,7 +32,7 @@ const SidebarContainer: React.FC = () => {
         if (window.innerWidth < 767) {
             closeSidebar();
         }
-    }, [id]);
+    }, [router]);
 
     return (
         <Sidebar open={showSidebar}
