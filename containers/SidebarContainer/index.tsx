@@ -19,20 +19,13 @@ const SidebarContainer: React.FC = () => {
     };
 
     useEffect(() => {
-        if (!router.isReady) {
-            return;
-        }
-
         if (!id) {
             setActiveBoardId(1);
             return ;
         }
 
         setActiveBoardId(Number(id));
-        if (window.innerWidth < 767) {
-            closeSidebar();
-        }
-    }, [router]);
+    }, [id]);
 
     return (
         <Sidebar open={showSidebar}

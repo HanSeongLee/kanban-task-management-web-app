@@ -13,5 +13,9 @@ export const useAppStore = create<StoreState>()(
         ...createSidebarSlice(...a),
     }), {
         name: 'kanban-task-management-store',
+        partialize: (state) => ({
+            boards: state.boards,
+            showSidebar: state.showSidebar,
+        }),
     })
 );

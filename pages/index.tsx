@@ -2,11 +2,15 @@ import type { NextPage } from 'next'
 import styles from './style.module.scss';
 import Header from 'components/commons/Header';
 import CardColumnListContainer from 'containers/CardColumnListContainer';
-import SidebarContainer from 'containers/SidebarContainer';
 import ModalContainer from 'containers/ModalContainer';
 import { useAppStore } from 'lib/store';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+const SidebarContainer = dynamic(() => import('../containers/SidebarContainer'), {
+    ssr: false,
+});
 
 const Home: NextPage = () => {
     const { boards } = useAppStore();
