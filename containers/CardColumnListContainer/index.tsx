@@ -73,7 +73,7 @@ const CardColumnListContainer: React.FC<IProps> = (props) => {
                                                                     <li {...provided.draggableProps}
                                                                         {...provided.dragHandleProps}
                                                                         ref={provided.innerRef}
-                                                                        stye={{
+                                                                        style={{
                                                                             ...provided.draggableProps.style,
                                                                         }}
                                                                     >
