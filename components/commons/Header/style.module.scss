@@ -8,7 +8,10 @@
 
   &.sidebar {
     .logo {
-      display: none;
+
+      @include media(">tablet") {
+        display: none;
+      }
     }
 
     .divider {
