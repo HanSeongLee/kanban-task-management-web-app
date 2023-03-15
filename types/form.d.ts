@@ -12,6 +12,7 @@ interface IForm {
 interface IAddBoardForm {
     name: string;
     columns: {
+        color: string;
         value: string;
     }[];
 }
@@ -20,6 +21,7 @@ interface IEditBoardForm {
     name: string;
     columns: {
         id: number;
+        color: string;
         value: string;
     }[];
 }

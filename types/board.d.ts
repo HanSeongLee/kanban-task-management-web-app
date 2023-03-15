@@ -7,6 +7,7 @@ type Board = {
 type Column = {
     id: number;
     name: string;
+    color: string;
     tasks: Task[];
 };
 

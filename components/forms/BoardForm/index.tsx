@@ -9,6 +9,8 @@ import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import Button from 'components/commons/Button';
 import cn from 'classnames';
 import { IForm } from 'types/form';
+import ColorSelect from 'components/commons/ColorSelect';
+import { randomHexColor } from 'lib/utils';
 
 interface IProps extends Omit<FormHTMLAttributes<HTMLFormElement>, 'title'>, IForm {
     control: Control<any>;
@@ -67,6 +69,15 @@ const BoardForm: React.FC<IProps> = ({
                                         )}
                             />
                             <Controller control={control}
+                                        name={`columns.${index}.color`}
+                                        rules={{
+                                            required: 'Can’t be empty',
+                                        }}
+                                        render={({ field }) => (
+                                            <ColorSelect {...field} />
+                                        )}
+                            />
+                            <Controller control={control}
                                         name={`columns.${index}.value`}
                                         rules={{
                                             required: 'Can’t be empty',
@@ -91,7 +102,7 @@ const BoardForm: React.FC<IProps> = ({
                 </ul>
                 <Button type={'button'}
                         variant={'secondary'}
-                        onClick={_ => append({ value: '' })}
+                        onClick={_ => append({ color: randomHexColor(), value: '' })}
                 >
                     + Add New Column
                 </Button>

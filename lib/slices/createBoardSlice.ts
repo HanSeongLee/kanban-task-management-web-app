@@ -35,6 +35,7 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                     {
                         id: generateId(),
                         'name': 'Todo',
+                        color: '#49C4E5',
                         'tasks': [
                             {
                                 id: generateId(),
@@ -113,6 +114,7 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                     {
                         id: generateId(),
                         'name': 'Doing',
+                        color: '#8471F2',
                         'tasks': [
                             {
                                 id: generateId(),
@@ -247,6 +249,7 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                     {
                         id: generateId(),
                         'name': 'Done',
+                        color: '#67E2AE',
                         'tasks': [
                             {
                                 id: generateId(),
@@ -387,10 +390,11 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                 draft.boards.push({
                     id: boardId,
                     name,
-                    columns: columns.map(({ name }) => {
+                    columns: columns.map(({ color, name }) => {
                         return {
                             id: generateId(),
                             name,
+                            color,
                             tasks: [],
                         };
                     }),
@@ -421,10 +425,12 @@ export const createBoardSlice: StateCreator<BoardSlice> = (set, get) => {
                     const column = board.columns.find(({ id }: { id: number }) => id === newColumn.id);
                     if (column) {
                         column.name = newColumn.name;
+                        column.color = newColumn.color;
                     } else {
                         board.columns.splice(index, 0 ,{
                             id: newColumn.id,
                             name: newColumn.name,
+                            color: newColumn.color,
                             tasks: [],
                         });
                     }

@@ -14,9 +14,11 @@ const AddNewBoardFormContainer: React.FC = (props) => {
         name: '',
         columns: [
             {
+                color: '#49C4E5',
                 value: 'Todo',
             },
             {
+                color: '#8471F2',
                 value: 'Doing',
             },
         ],
@@ -30,10 +32,11 @@ const AddNewBoardFormContainer: React.FC = (props) => {
 
     const onSubmit = (data: IAddBoardForm) => {
         const { name }: { name: string } = data;
-        const columns: Column[] = data.columns.map(({ value }, index) => {
+        const columns: Column[] = data.columns.map(({ color, value }, index) => {
             return {
                 id: index,
                 name: value,
+                color,
                 tasks: [],
             };
         });

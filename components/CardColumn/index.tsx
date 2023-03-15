@@ -7,14 +7,19 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const CardColumn: React.FC<IProps> = ({
-                                  column: { name, tasks }, className, children, ...props
-                              }) => {
+                                          column: { name, color, tasks },
+                                          className, children, ...props
+                                      }) => {
     return (
         <div className={cn(styles.cardColumn, className)}
              {...props}
         >
             <div className={styles.title}>
-                {name} ({tasks?.length})
+                <span className={styles.circle}
+                style={{
+                    background: color,
+                }}
+                />{name} ({tasks?.length})
             </div>
 
             <ul className={styles.cardList}>
