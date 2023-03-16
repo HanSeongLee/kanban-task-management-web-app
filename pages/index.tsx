@@ -15,7 +15,7 @@ const SidebarContainer = dynamic(() => import('../containers/SidebarContainer'),
 });
 
 const Home: NextPage = () => {
-    const { boards } = useAppStore();
+    const { _hasHydrated, boards } = useAppStore();
     const router = useRouter();
     const { pathname, query: { id } } = router;
 
@@ -32,6 +32,10 @@ const Home: NextPage = () => {
             },
         });
     }, [boards, router]);
+
+    if (!id) {
+        return <></>;
+    }
 
     return (
         <>
