@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
 import styles from 'components/commons/Sidebar/style.module.scss';
 import cn from 'classnames';
-import ThemeButtonContainer from 'containers/ThemeButtonContainer';
+import ThemeButtonContainer from 'containers/commons/ThemeButtonContainer';
 import Link from 'next/link';
 import Logo from 'components/commons/Logo';
 import HideSidebarIcon from '/public/icons/icon-hide-sidebar.svg';

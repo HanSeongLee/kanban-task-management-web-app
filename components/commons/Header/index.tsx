@@ -3,8 +3,8 @@ import styles from 'components/commons/Header/style.module.scss';
 import Container from 'components/commons/Container';
 import cn from 'classnames';
 import Logo from 'components/commons/Logo';
-import BoardOptionButtonContainer from 'containers/BoardOptionButtonContainer';
-import BoardTitleBarContainer from 'containers/BoardTitleBarContainer';
+import BoardOptionButtonContainer from 'containers/boards/BoardOptionButtonContainer';
+import BoardTitleBarContainer from 'containers/boards/BoardTitleBarContainer';
 import { useAppStore } from 'lib/store';
 
 interface IProps extends HTMLAttributes<HTMLHeadElement> {

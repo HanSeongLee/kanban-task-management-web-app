@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import styles from './style.module.scss';
-import CardColumnListContainer from 'containers/CardColumnListContainer';
-import ModalContainer from 'containers/ModalContainer';
+import CardColumnListContainer from 'containers/boards/CardColumnListContainer';
+import ModalContainer from 'containers/commons/ModalContainer';
 import { useAppStore } from 'lib/store';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -10,12 +10,12 @@ import dynamic from 'next/dynamic';
 const Header = dynamic(() => import('../components/commons/Header'), {
     ssr: false,
 });
-const SidebarContainer = dynamic(() => import('../containers/SidebarContainer'), {
+const SidebarContainer = dynamic(() => import('../containers/commons/SidebarContainer'), {
     ssr: false,
 });
 
 const Home: NextPage = () => {
-    const { _hasHydrated, boards } = useAppStore();
+    const { boards } = useAppStore();
     const router = useRouter();
     const { pathname, query: { id } } = router;
 

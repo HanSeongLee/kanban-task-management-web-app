@@ -3,7 +3,7 @@ const { withSentryConfig } = require('@sentry/nextjs')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   swcMinify: true,
-  reactStrictMode: true,
+  reactStrictMode: false,
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
